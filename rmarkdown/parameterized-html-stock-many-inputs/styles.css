@@ -1,0 +1,16 @@
+.logo {
+  height: 50px;
+  float: right;
+  clear: right;
+  bottom: 10px;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+hr {
+  border: 0;
+  height: 4px;
+  background: #8f0000;
+}
