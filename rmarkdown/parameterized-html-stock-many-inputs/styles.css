@@ -14,3 +14,7 @@ hr {
   height: 4px;
   background: #8f0000;
 }
+
+.title {
+  display: none;
+}
