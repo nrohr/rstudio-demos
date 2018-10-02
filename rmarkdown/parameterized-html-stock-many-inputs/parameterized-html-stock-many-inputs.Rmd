@@ -41,6 +41,8 @@ library(DT)
 library(dygraphs)
 library(forecast)
 library(highcharter)
+library(blastula)
+library(glue)
 
 prices <- round(getSymbols(params$symbol, auto.assign = FALSE, src = 'yahoo'), 2)
 close <- Cl(last(prices))
@@ -52,12 +54,13 @@ recent_nv <- recent[,-5]
 arima_coefs <- eval(parse(text = paste0("c(", str_extract(params$model, "\\d,\\d,\\d"), ")")))
 m <- arima(recent[,1], arima_coefs)
 f <- forecast(m, as.numeric(params$forecast - Sys.Date()))
+fcast <- round(as.numeric(f$mean)[1],2)
 
 ```
 
 The stock _`r params$symbol`_ closed __`r ifelse(close>open,'up','down')`__ at __$`r close`__ per share yesterday.
 
-The current forecast for `r params$forecast` is __$`r round(as.numeric(f$mean)[1],2)`__ per share.
+The current forecast for `r params$forecast` is __$`r fcast`__ per share.
 
 <br>
 
@@ -101,7 +104,19 @@ This model is fit with the arima function in the forecast package. A `r params$m
 plot(forecast(m,7), main="")
 ```
 
-```{r, warning=FALSE, message=FALSE}
-subject <- paste0("GOOG forecast for ,", params$forecast, ": $", round(as.numeric(f$mean)[1],2), " (", Sys.time(), ")")
-rmarkdown::output_metadata$set(rsc_email_subject = subject)
-```
+````{r}
+cta_button <- add_cta_button(url = "http://colorado.rstudio.com:3939/bank-stock/", text = "View Report", align = "center")
+
+email <- blastula::compose_email(
+  body = "
+     Tomorrow's stock forecast report for __{params$symbol}__ is now available.
+
+     The current forecast for {params$forecast} is __${fcast}__ per share.
+     {cta_button}
+  "
+)
+
+rmarkdown::output_metadata$set(rsc_email_subject = glue('GOOG forecast for {params$forecast}: ${round(as.numeric(f$mean)[1],2)}'),
+    rsc_email_body_html = email$html_str,
+    rsc_email_images = email$images)
+````
