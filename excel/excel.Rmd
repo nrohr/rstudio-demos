@@ -1,0 +1,31 @@
+---
+title: "Excel URL test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First we will create a data frame.
+
+``` {r}
+df <- data.frame(date = seq.Date(from = as.Date("2018-10-01"), to = as.Date("2018-10-08"), by = "1 day"),
+                 item = rep(c("A", "B"), 4),
+                 price = rep(c("100", "50"), 4))
+```
+
+Next we will write it to a .csv file.
+
+``` {r}
+write.csv(df, "nick-test.csv")
+```
+
+Finally, we will set the output_metadata so the file is attached to any scheduled emails and also saved in a persistent location.
+
+``` {r}
+rmarkdown::output_metadata$set(rsc_output_files = list("nick-test.csv"),
+                               rsc_email_attachments = list("nick-test.csv"))
+```
+
+Now, our CSV file is written to a persistent location. You can find it [here](nick-test.csv).

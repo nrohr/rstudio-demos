@@ -108,12 +108,12 @@ plot(forecast(m,7), main="")
 cta_button <- add_cta_button(url = "http://colorado.rstudio.com:3939/bank-stock/", text = "View Report", align = "center")
 
 email <- blastula::compose_email(
-  body = "
+  body = glue("
      Tomorrow's stock forecast report for __{params$symbol}__ is now available.
 
      The current forecast for {params$forecast} is __${fcast}__ per share.
      {cta_button}
-  "
+  ")
 )
 
 rmarkdown::output_metadata$set(rsc_email_subject = glue('GOOG forecast for {params$forecast}: ${round(as.numeric(f$mean)[1],2)}'),
