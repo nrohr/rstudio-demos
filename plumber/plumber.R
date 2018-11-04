@@ -1,3 +1,7 @@
+#* @apiTitle Stock Volatility API
+#* @apiDescription Given a stock ticker, this API returns the variance in daily returns.
+#* View this API in action at https://tinyurl.com/yclfs3ln
+
 library(tidyquant)
 library(tidyverse)
 
