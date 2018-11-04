@@ -1,0 +1,58 @@
+default:
+  mssql:
+      Driver: "SQLServer"
+      Server: "sol-eng-sqlserv.cihykudhzbgw.us-west-2.rds.amazonaws.com"
+      Database: "airontime"
+      UID: "rstudioadmin"
+      PWD: "ABCd4321"
+      Port: 1433
+  hive:
+    Driver: "Hive"
+    Host: "ec2-52-35-222-37.us-west-2.compute.amazonaws.com"
+    Schema: "default"
+    UID: "rstudio"
+    PWD: "rstudio"
+    Port: 10000
+  impala:
+    Driver: "Impala"
+    Host: "ec2-52-35-222-37.us-west-2.compute.amazonaws.com"
+    Schema: "default"
+    UID: "rstudio"
+    PWD: "rstudio"
+    Port: 21050
+  postgresql:
+    Driver: "PostgreSql"
+    Server: "sol-eng-postgre.cihykudhzbgw.us-west-2.rds.amazonaws.com"
+    Port: 5432
+    Database: "airontime"
+    UID: "rstudioadmin"
+    PWD: "ABCd4321"      
+rsconnect:
+  mssql:
+      Driver: "SQLServer"
+      Server: "sol-eng-sqlserv.cihykudhzbgw.us-west-2.rds.amazonaws.com"
+      Database: "airontime"
+      UID: "rstudioadmin"
+      PWD: "ABCd4321"
+      Port: 1433
+  hive:
+    Driver: "Hive"
+    Host: "ec2-52-35-222-37.us-west-2.compute.amazonaws.com"
+    Schema: "default"
+    UID: "rstudio"
+    PWD: "rstudio"
+    Port: 10000
+  impala:
+    Driver: "Impala"
+    Host: "ec2-52-35-222-37.us-west-2.compute.amazonaws.com"
+    Schema: "default"
+    UID: "rstudio"
+    PWD: "rstudio"
+    Port: 21050
+  postgresql:
+    Driver: "Postgresql Driver"
+    Server: "sol-eng-postgre.cihykudhzbgw.us-west-2.rds.amazonaws.com"
+    Port: 5432
+    Database: "airontime"
+    UID: "rstudioadmin"
+    PWD: "ABCd4321"

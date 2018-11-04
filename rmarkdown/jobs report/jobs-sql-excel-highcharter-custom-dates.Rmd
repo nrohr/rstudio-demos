@@ -1,0 +1,592 @@
+---
+title: "Jobs Report Scheduled and Excel and Highcharter"
+resource_files: config.yml
+rmd_output_metadata:
+  rsc_email_suppress_scheduled: yes
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+---
+
+
+
+```{r setup, include = FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, comment = NA)
+library(tidyverse)
+library(tidyquant)
+library(highcharter)
+library(blastula)
+library(formattable)
+library(openxlsx)
+library(config)
+library(dbplyr)
+library(DBI)
+library(odbc)
+library(htmltools)
+
+dw <- config::get("mssql")
+
+con <- DBI::dbConnect(odbc::odbc(),
+                      Driver = dw$Driver,
+                      Server = dw$Server,
+                      #Host = dw$Host,
+                      UID    = dw$UID,
+                      PWD    = dw$PWD,
+                      Port   = dw$Port,
+                      Database = dw$Database
+                      #Schema = dw$Schema
+                      )
+
+```
+
+### Import data from sql
+
+```{r}
+bls_labor_for_data <-
+  tbl(con, "bls_labor_for_data") %>% 
+  collect() %>% 
+  mutate(date = ymd(date),
+         value = as.numeric(value))
+
+fred_empl_data <-
+  tbl(con, "fred_empl_data") %>% 
+  collect()
+```
+
+
+### Chop up the Fred data into sectors and hours/wages objects
+
+```{r}
+
+labor_sector_data <- 
+  fred_empl_data  %>% 
+  filter(date >= "1990-01-01") %>%
+  dplyr::select(1, 9:22) %>% 
+  gather(sector, employees, -date) %>% 
+  group_by(sector) %>% 
+  mutate(monthly_change = employees - lag(employees, 1),
+         yearly_change = employees - lag(employees, 12)) %>%
+  rename(jobs = employees) %>% 
+  na.omit()
+
+hours_wages_data <-
+  fred_empl_data%>%
+  dplyr::select(date, `Avg Hourly Earnings`, `Avg Weekly Hours`)  %>% 
+  na.omit()
+
+```
+
+### Visualize Total Employment Since 2009 with ggplot
+
+```{r}
+labor_sector_data_ggplot <- 
+  labor_sector_data %>% 
+  filter(sector == "Nonfarm Employment") %>% 
+  filter(date >= "2009-01-01") %>% 
+   mutate(col_blue = 
+           if_else(monthly_change > 0, 
+                  monthly_change, as.numeric(NA)),
+         col_red = 
+           if_else(monthly_change < 0, 
+                  monthly_change, as.numeric(NA))) %>%
+  ggplot(aes(x = date)) +
+  geom_col(aes(y = col_red),
+               alpha = .85, 
+               fill = "pink", 
+               color = "pink") +
+  geom_col(aes(y = col_blue),
+               alpha = .85, 
+               fill = "cornflowerblue", 
+               color = "cornflowerblue") +
+  ylab("Monthly Change (thousands)") +
+  labs(title = "Monthly Private Employment Change",
+       subtitle = "total empl, since 2009",
+       caption = "enjoy!") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption=element_text(hjust=0))
+
+labor_sector_data_ggplot
+```
+
+### Visualize Total Employment Since 2009 with highcharter
+
+
+```{r}
+total_employ_hc <- 
+  labor_sector_data %>% 
+  filter(sector == "Nonfarm Employment") %>% 
+  filter(date >= "2009-01-01") %>%
+  mutate(coloract = ifelse(monthly_change > 0, "#6495ed", "#ffe6ea"))
+```
+
+
+```{r}
+total_employ_hc_vis <- 
+highchart() %>%
+  hc_title(text = "Monthly Employment Change") %>%
+  hc_add_series(total_employ_hc,  
+                "column", 
+                pointWidth = 5,
+                hcaes(x = date,
+                      y = monthly_change,
+                      color = coloract),
+                name = "monthly empl change") %>% 
+  hc_xAxis(type = "datetime") %>% 
+  hc_exporting(enabled = TRUE)
+
+total_employ_hc_vis
+
+```
+
+```{r, echo = FALSE}
+total_employ_hc_fname <- 
+  paste("total_employ_hc_",Sys.Date(), ".xlsx", sep = "")
+
+write.xlsx(total_employ_hc, file = total_employ_hc_fname)
+
+rmarkdown::output_metadata$set(rsc_output_files = list(total_employ_hc_fname))
+```
+
+[Link to total nonfarm employment data Excel](`r total_employ_hc_fname`)
+
+### Visualize Sector by Sector Change Last Month with ggplot
+
+
+```{r}
+recent_month_sector_ggplot <- 
+labor_sector_data  %>% 
+  filter(date == (last(date))) %>% 
+   mutate(col_blue = 
+           if_else(monthly_change > 0, 
+                  monthly_change, as.numeric(NA)),
+         col_red = 
+           if_else(monthly_change < 0, 
+                  monthly_change, as.numeric(NA))) %>%
+  ggplot(aes(x = reorder(sector, monthly_change))) +
+  geom_col(aes(y = col_red),
+               alpha = .85, 
+               fill = "pink", 
+               color = "pink") +
+  geom_col(aes(y = col_blue),
+               alpha = .85, 
+               fill = "cornflowerblue", 
+               color = "cornflowerblue") +
+  labs(title = paste((lubridate::month(last(labor_sector_data$date), 
+                                       label = TRUE, abbr = FALSE)), 
+                     "Employment Change", 
+                     sep = " "),
+       subtitle = "by sector, and total", 
+       x = "sector", 
+       y = "Monthly Change (thousands)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
+
+recent_month_sector_ggplot
+```
+
+### Visualize Sector by Sector Change Last Month with highcharter
+
+```{r}
+month <- lubridate::month(last(labor_sector_data$date),
+                                 label = TRUE, 
+                                 abbr = FALSE)
+  
+labor_sector_most_recent_month <- 
+  labor_sector_data  %>% 
+  filter(date == (last(date))) %>%
+  arrange(monthly_change) %>% 
+  mutate(coloract = if_else(monthly_change > 0, "#6495ed", "#ffe6ea"))
+
+
+highchart() %>%
+  hc_title(text = paste(month, "Employment Change", sep = " ")) %>%
+  hc_add_series(labor_sector_most_recent_month,  
+                "column", 
+                pointWidth = 20,
+                hcaes(x = sector,
+                      y = monthly_change,
+                      color = coloract),
+                showInLegend = FALSE) %>% 
+  hc_xAxis(categories = labor_sector_most_recent_month$sector) %>%
+  hc_xAxis(title = list(text = "Sector")) %>% 
+  hc_yAxis(title = list(text = "Monthly Change (thousands)"))
+
+
+```
+
+```{r, echo = FALSE}
+labor_sector_most_recent_month_fname <- 
+  paste("labor_sector_most_recent_month_", Sys.Date(), ".xlsx", sep = "")
+
+write.xlsx(labor_sector_most_recent_month, file = labor_sector_most_recent_month_fname)
+
+rmarkdown::output_metadata$set(rsc_output_files = list(labor_sector_most_recent_month_fname))
+```
+
+[Link to sector change last month data Excel](`r labor_sector_most_recent_month_fname`)
+
+### Visualize Sector by Sector Data over time with ggplot
+
+```{r, fig.height=10, fig.width=12}
+
+labor_sector_data %>% 
+  filter(sector != "Nonfarm Employment") %>% 
+  filter(date >= (last(date) - months(24))) %>% 
+   mutate(col_blue = 
+           if_else(monthly_change > 0, 
+                  monthly_change, as.numeric(NA)),
+         col_red = 
+           if_else(monthly_change < 0, 
+                  monthly_change, as.numeric(NA))) %>%
+  ggplot(aes(x = date)) +
+  geom_col(aes(y = col_red),
+               alpha = .85, 
+               fill = "pink", 
+               color = "pink") +
+  geom_col(aes(y = col_blue),
+               alpha = .85, 
+               fill = "cornflowerblue", 
+               color = "cornflowerblue") +
+  ylab("Monthly Change (thousands)") +
+  labs(title = "Monthly Private Employment Change",
+       subtitle = "by sector, 24 months") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+    strip.background = element_blank(),
+    strip.placement = "inside",
+    strip.text = element_text(size=15),
+    panel.spacing = unit(0.2, "lines") ,
+    panel.background=element_rect(fill="white")) +
+  facet_wrap(~sector, shrink = FALSE)
+```
+
+
+### Visualize Sector by Sector Data over time with highcharter
+
+```{r}
+labor_sector_data_spread_hc <- 
+  labor_sector_data %>% 
+  filter(sector != "Nonfarm Employment") %>% 
+  filter(date >= (last(date) - months(24))) %>% 
+  select(date, sector, monthly_change) %>% 
+  spread(sector, monthly_change)
+
+map(names(labor_sector_data_spread_hc[2:11]), function(x){
+
+labor_data_hc_fun <- 
+  labor_sector_data %>% 
+  filter(sector == x) %>% 
+  filter(date >= (last(date) - months(24))) %>% 
+   mutate(coloract = if_else(monthly_change > 0, "#6495ed", "#ff9999"))
+
+highchart() %>%
+  hc_title(text = paste(x, "Monthly Employment Change", sep = " ")) %>%
+  hc_add_series(labor_data_hc_fun,  
+                "column", 
+                pointWidth = 10,
+                hcaes(x = date,
+                      y = monthly_change,
+                      color = coloract),
+                name = "monthly empl change") %>% 
+  hc_xAxis(type = "datetime") %>% 
+  hc_legend(enabled = FALSE) %>% 
+  hc_exporting(enabled = TRUE)
+}) %>% 
+  hw_grid(rowheight = 300, ncol = 3) %>% 
+  browsable()
+```
+
+```{r, echo = FALSE}
+labor_sector_fname <- 
+  paste("labor_sector_",Sys.Date(), ".xlsx", sep = "")
+
+write.xlsx(labor_sector_data_spread_hc, file = labor_sector_fname)
+
+rmarkdown::output_metadata$set(rsc_output_files = list(labor_sector_fname))
+```
+
+[Link to sector by sector labor data Excel](`r labor_sector_fname`)
+
+
+### Grab the ADP and BLS Data from the Fred object
+
+```{r}
+adp_fred <-
+  fred_empl_data  %>%
+  select(date, ADP = `ADP Estimate`, BLS = `Nonfarm Employment`)  %>% 
+    gather(report, month, -date) %>% 
+    group_by(report) %>% 
+    mutate(monthly_change = month - lag(month, 1)) %>% 
+  filter(date >= "2017-01-01") %>% 
+  select(-month)
+```
+
+```{r, echo = FALSE}
+adp_fred_fname <- 
+  paste("adp_fred_",Sys.Date(), ".xlsx", sep = "")
+
+write.xlsx(adp_fred, file = adp_fred_fname)
+
+rmarkdown::output_metadata$set(rsc_output_files = list(adp_fred_fname))
+```
+
+[Link to ADP and BLS data Excel](`r adp_fred_fname`)
+
+### ADP v. BLS ggplot
+
+```{r}
+
+adp_fred %>%
+  ggplot(aes(x = date, y = monthly_change, fill = report)) + 
+  geom_col(position = "dodge") + 
+  scale_fill_manual(values = c("pink","cornflowerblue")) +
+  labs(title = "ADP Estimate v. BLS Report",
+       caption = "data source: fred",
+       y = "monthly change (thousands)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        plot.title = element_text(hjust = 0.5),
+        plot.caption  = element_text(hjust = 0)) +
+  scale_x_date(breaks = scales::pretty_breaks(n = 16))
+```
+
+### ADP v. BLS highcharter
+
+```{r}
+adp_bls_hc <- 
+  adp_fred %>% 
+  mutate(coloract = ifelse(report == "ADP", "#FF0000", "#00FFFF"))
+
+hchart(adp_bls_hc, 
+       type = 'column', 
+       hcaes(y = monthly_change,
+             x = date,
+             group = report, 
+             color = coloract)) %>% 
+  hc_title(text = "ADP v. BLS") %>%
+  hc_xAxis(title = list(text = "")) %>%
+  hc_yAxis(title = list(text = "monthly change (thousands)")) %>%
+  hc_add_theme(hc_theme_flat()) %>%
+  hc_exporting(enabled = TRUE) %>% 
+  hc_legend(enabled = FALSE)
+```
+
+### Vis from BLS direct download
+
+```{r}
+recessions_tribble <- tribble(
+  ~Peak, ~Trough,
+  "1948-11-01", "1949-10-01",
+  "1953-07-01", "1954-05-01",
+  "1957-08-01", "1958-04-01",
+  "1960-04-01", "1961-02-01",
+  "1969-12-01", "1970-11-01",
+  "1973-11-01", "1975-03-01",
+  "1980-01-01", "1980-07-01",
+  "1981-07-01", "1982-11-01",
+  "1990-07-01", "1991-03-01",
+  "2001-03-01", "2001-11-01",
+  "2007-12-01", "2009-06-01") %>% 
+  mutate(Peak = ymd(Peak),
+         Trough = ymd(Trough))
+
+# can save ggplot variables
+# geom_rect creates that object
+recession_shade <- 
+  geom_rect(data = recessions_tribble, 
+            inherit.aes = F, 
+            aes(xmin = Peak, 
+                xmax = Trough, 
+                ymin = -Inf, 
+                ymax = +Inf), 
+            fill = 'darkgray', 
+            alpha = 0.4)
+
+bls_labor_for_data %>% 
+  group_by(dem) %>%
+  filter(date >= "1980-01-01") %>% 
+  ggplot(aes(x = date, y = value, color = dem, label = dem)) +
+  recession_shade +
+  geom_line()  +
+  theme_minimal() +
+  scale_x_date(date_breaks = "2 years", 
+               date_labels = "%Y") +
+  xlim(ymd("1980-01-01"), Sys.Date()) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 10), 
+                     labels = function(x) paste0(x, "%"), 
+                     sec.axis = dup_axis()) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption=element_text(hjust=0)) +
+  ylab("") +
+  xlab("") +
+  ggtitle("Labor Force Participation Rate: Prime Working Age (25-54)", 
+          subtitle = "seasonally adjusted") +
+  labs(caption = "based on work by the inestimable @lenkiefer") 
+```
+
+
+```{r}
+library(timetk)
+bls_labor_for_data_xts <- 
+  bls_labor_for_data %>% 
+  group_by(dem) %>%
+  filter(date >= "1980-01-01") %>% 
+  spread(dem, value) %>% 
+  tk_xts(date_var = date)
+
+
+highchart(type = 'stock')%>%
+  hc_add_series(bls_labor_for_data_xts$All, name = "All") %>%
+  hc_add_series(bls_labor_for_data_xts$Men, name = "Men") %>%
+  hc_add_series(bls_labor_for_data_xts$Women, name = "Women") %>%
+  hc_title(text = "Labor Force Participation") %>% 
+      hc_xAxis(type = 'datetime',
+                 plotBands = list(
+                   list(
+                     label = list(text = "Bush Senior"),
+                     color = "rgba(100, 0, 0, 0.1)",
+                     from = datetime_to_timestamp(as.Date('1990-07-01', tz = 'UTC')),
+                     to = datetime_to_timestamp(as.Date('1991-03-01', tz = 'UTC'))
+                     ),
+                   list(
+                     label = list(text = "Internet Bubble"),
+                     color = "rgba(100, 0, 0, 0.1)",
+                     from = datetime_to_timestamp(as.Date('2001-03-01', tz = 'UTC')),
+                     to = datetime_to_timestamp(as.Date('2001-11-01', tz = 'UTC'))
+                     ),
+                   list(
+                     label = list(text = "Financial Crisis"),
+                     color = "rgba(100, 0, 0, 0.1)",
+                     from = datetime_to_timestamp(as.Date('2007-12-01', tz = 'UTC')),
+                     to = datetime_to_timestamp(as.Date('2009-06-01', tz = 'UTC'))
+                     ),
+                   list(
+                     label = list(text = "Volker Rate Rise"),
+                     color = "rgba(100, 0, 0, 0.1)",
+                     from = datetime_to_timestamp(as.Date('1981-07-01', tz = 'UTC')),
+                     to = datetime_to_timestamp(as.Date('1982-11-01', tz = 'UTC'))
+                     )
+                   )
+               ) %>% 
+  hc_navigator(enabled = FALSE) %>% 
+  hc_scrollbar(enabled = FALSE) %>% 
+  hc_legend(enabled = TRUE) %>% 
+  hc_exporting(enabled = TRUE)
+
+```
+
+```{r, echo = FALSE}
+labor_for_part_fname <- 
+  paste("labor_for_part_",Sys.Date(), ".xlsx", sep = "")
+
+write.xlsx(bls_labor_for_data_xts, file = labor_for_part_fname)
+
+rmarkdown::output_metadata$set(rsc_output_files = list(labor_for_part_fname))
+
+```
+
+[Link to labor force part data Excel](`r labor_for_part_fname`)
+
+
+### Schedule email for BLS release dates
+
+```{r}
+# we will schedule this to run every friday in the RSC scheduler.
+# On one Friday per month, when BLS releases jobs data, 
+# this report will be emailed. 
+
+release_dates <- 
+tribble(
+~"bls release date",  
+"Jan. 05, 2018",
+"Feb. 02, 2018",
+"Mar. 09, 2018",
+"Apr. 06, 2018",
+"May. 04, 2018",
+"Jun. 02, 2018",
+"Jul. 06, 2018",
+"Aug. 03, 2018",
+"Sep. 07, 2018",
+"Oct. 05, 2018",
+"Nov. 02, 2018",
+"Dec. 07, 2018") %>% 
+mutate(`bls release date` = 
+         ymd(parse_date_time(`bls release date`, "%m%d%Y"))) %>%
+pull(`bls release date`)
+
+ 
+if (today() %in% release_dates) {
+  # send email if today is a release today
+  rmarkdown::output_metadata$set(rsc_email_suppress_scheduled = FALSE)
+  
+  # embed charts and data table
+  
+  sign_formatter <- formatter("span", 
+  style = x ~ style(color = ifelse(x > 0, "green", 
+    ifelse(x < 0, "red", "black"))))
+
+
+tbl <- 
+  labor_sector_most_recent_month %>% 
+  dplyr::select(-coloract) %>% 
+  format_table(x = .,
+               list(monthly_change = sign_formatter,
+                    yearly_change = sign_formatter,
+                    jobs = comma))
+last_month <- lubridate::month(last(labor_sector_data$date), 
+                                       label = TRUE, abbr = FALSE)
+  
+  msg <- compose_email(
+    body = "
+    Hello Team,<br/>
+    
+    Here are the latest jobs report data and charts,
+
+    updated with the BLS numbers for {last_month}.<br/>
+  
+    <br/>Here is monthly change over time: 
+
+    {add_ggplot(labor_sector_data_ggplot, width = 6, height = 6)}
+
+
+    Here are sector by sector jobs numbers for {last_month}: 
+
+    {add_ggplot(recent_month_sector_ggplot, width = 6, height = 6)}
+
+    Here are the raw numbers for {last_month}:
+
+    {tbl}
+    
+
+    Let me know if you have any questions.
+    
+
+    Arrividerci,
+    JKR"
+  )
+  rmarkdown::output_metadata$set(rsc_email_body_html = msg$html_str)
+  rmarkdown::output_metadata$set(rsc_email_images = msg$images)
+  
+  # attach the excel file
+  rmarkdown::output_metadata$set(rsc_email_attachments = list( total_employ_hc_fname, labor_sector_most_recent_month_fname))
+  
+} else {
+  # don't send an email if today is not a release date
+  rmarkdown::output_metadata$set(rsc_email_suppress_scheduled = TRUE)
+}
+
+
+
+```
+
+
