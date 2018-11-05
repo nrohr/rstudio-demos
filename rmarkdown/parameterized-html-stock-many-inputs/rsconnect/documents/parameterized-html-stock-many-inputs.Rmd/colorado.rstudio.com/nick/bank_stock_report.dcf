@@ -1,0 +1,12 @@
+name: bank_stock_report
+title: bank stock report
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: http://colorado.rstudio.com:3939/__api__
+appId: 1520
+bundleId: 21236
+url: http://colorado.rstudio.com:3939/bank-stock/
+when: 1541338332.00927
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,12 @@
+name: api-vol
+title:
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: http://colorado.rstudio.com:3939/__api__
+appId: 1211
+bundleId: 21235
+url: http://colorado.rstudio.com:3939/stock-vol-api/
+when: 1541338234.11312
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,12 @@
+name: parameterized_stock_report
+title: Parameterized Stock Report
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: http://colorado.rstudio.com:3939/__api__
+appId: 1605
+bundleId: 21228
+url: http://colorado.rstudio.com:3939/content/1605/
+when: 1541336999.93835
+asMultiple: FALSE
+asStatic: FALSE

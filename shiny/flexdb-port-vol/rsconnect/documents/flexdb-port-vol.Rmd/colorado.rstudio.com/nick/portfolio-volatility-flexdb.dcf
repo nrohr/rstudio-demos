@@ -1,0 +1,12 @@
+name: portfolio-volatility-flexdb
+title: Portfolio-Volatility-Flexdb
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: http://colorado.rstudio.com:3939/__api__
+appId: 1210
+bundleId: 21216
+url: http://colorado.rstudio.com:3939/port-vol/
+when: 1541326795.82866
+asMultiple: FALSE
+asStatic: FALSE
