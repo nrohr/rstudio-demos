@@ -1,0 +1,12 @@
+name: etf_monthly_returns_shiny2
+title: ETF Monthly Returns (Shiny)
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: http://colorado.rstudio.com:3939/__api__
+appId: 1750
+bundleId: 23642
+url: http://colorado.rstudio.com:3939/content/1750/
+when: 1544034618.45606
+asMultiple: FALSE
+asStatic: FALSE

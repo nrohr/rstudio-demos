@@ -1,0 +1,13 @@
+app <- ShinyDriver$new("../flexdb-port-vol.Rmd", seed = 72552)
+app$snapshotInit("mytest")
+
+app$setInputs(go = "click")
+app$setInputs(stock1 = "TSLA")
+app$setInputs(w1 = 30)
+app$setInputs(w2 = 20)
+app$setInputs(stock3 = "LYFT")
+app$setInputs(go = "click")
+app$setInputs(stock3 = "AMZ")
+app$setInputs(stock3 = "AMZN")
+app$setInputs(go = "click")
+app$snapshot()

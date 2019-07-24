@@ -1,0 +1,33 @@
+---
+title: "Trelliscope example"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The example below is reproduced from https://github.com/hafen/trelliscopejs.
+
+```{r tidyverse, message=FALSE, warning=FALSE}
+library(trelliscopejs)
+library(tidyverse)
+library(rbokeh)
+library(gapminder)
+
+# nest gapminder data by country
+by_country <- gapminder %>%
+  group_by(country, continent) %>%
+  nest()
+
+# add in a plot column with map_plot
+by_country <- by_country %>% mutate(
+  panel = map_plot(data,
+    ~ figure(xlim = c(1948, 2011), ylim = c(10, 95), width = 300, tools = NULL) %>%
+        ly_points(year, lifeExp, data = .x, hover = .x)
+  ))
+
+# plot it
+by_country %>%
+  trelliscope("gapminder", nrow = 2, ncol = 7, self_contained = TRUE)
+```

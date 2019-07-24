@@ -1,0 +1,33 @@
+---
+title: "ETF Monthly Returns"
+output: pdf_document
+params: 
+  data: NA
+  assets: NA
+  mindate: NA
+  maxdate: NA
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+library(knitr)
+```
+
+```{r plot}
+returns <- read.csv(params$data) %>% 
+  mutate(date = as.Date(date)) %>% 
+  filter(asset %in% params$assets,
+         date >= params$mindate,
+         date <= params$maxdate)
+             
+
+returns %>% 
+  ggplot(aes(x = date, y = returns, group = asset, color = asset)) +
+            geom_line() + 
+            labs(title = "Monthly Returns by Asset", x = "Date", y = "Monthly Returns", color = "Asset")
+```
+
+```{r table}
+kable(returns)
+```

@@ -1,0 +1,47 @@
+---
+title: "ETF Monthly Returns"
+output: html_document
+params:
+  assets: 
+    label: "Assets"
+    value: "AGG"
+    input: select
+    multiple: TRUE
+    choices: ["AGG", "SPY", "EFA", "IJS", "EEM"]
+  mindate:
+    label: "Minimum date"
+    input: date
+    value: "2005-01-31"
+  maxdate:
+    label: "Maximum date"
+    input: date
+    value: "2017-10-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+library(ggplot2)
+library(tidyverse)
+library(DT)
+library(DBI)
+
+con <- dbConnect(odbc::odbc(), "SQL Server", timeout = 10)
+returns <- tbl(con, "etf-monthly-returns") %>%
+  mutate(date = as.Date(date)) %>% 
+  filter(asset %in% params$assets,
+         date >= params$mindate,
+         date <= params$maxdate) %>% 
+  collect()
+```
+
+```{r plot}
+returns %>% 
+  ggplot(aes(x = date, y = returns, group = asset, color = asset)) +
+            geom_line() + 
+            labs(title = "Monthly Returns by Asset", x = "Date", y = "Monthly Returns", color = "Asset")
+```
+
+```{r table}
+datatable(returns)
+```

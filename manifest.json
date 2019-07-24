@@ -1,0 +1,562 @@
+{
+  "version": 1,
+  "locale": "en_US",
+  "platform": "3.4.4",
+  "metadata": {
+    "appmode": "static",
+    "primary_rmd": null,
+    "primary_html": "rmarkdown/jobs report/jobs-sql-excel-highcharter-custom-dates.html",
+    "content_category": null,
+    "has_parameters": false
+  },
+  "packages": null,
+  "files": {
+    "excel/excel.Rmd": {
+      "checksum": "62b22b58ac81286f03ea4a20f57d5f6f"
+    },
+    "excel/excel.xlsx": {
+      "checksum": "4475fa57f452ce9ed5ad5cf0b216f8de"
+    },
+    "excel/rsconnect/documents/excel.Rmd/colorado.rstudio.com/nick/excel.dcf": {
+      "checksum": "207e364e0cdaa6e91f000c7fb11ca0a9"
+    },
+    "plumber/plumber.R": {
+      "checksum": "330a2d0b1dbc097c204e3a87f9c86274"
+    },
+    "plumber/rsconnect/colorado.rstudio.com/nick/api-vol.dcf": {
+      "checksum": "b1ef445ea4fb7ab6cfbf49bbe15fd6df"
+    },
+    "README.md": {
+      "checksum": "9214b4e4460fcdb9f3a369941400e71e"
+    },
+    "returns.csv": {
+      "checksum": "99724c0e9a4328bf586361857789264f"
+    },
+    "rmarkdown/jobs report/adp_fred_2018-11-15.xlsx": {
+      "checksum": "0a3f533d030adf8e34e8d7b580bbc99f"
+    },
+    "rmarkdown/jobs report/config.yml": {
+      "checksum": "489301ce3050ea0c3ecdb172a6c4e2ac"
+    },
+    "rmarkdown/jobs report/jobs-sql-excel-highcharter-custom-dates.html": {
+      "checksum": "a1061eda372acae85ec4a1638d490eac"
+    },
+    "rmarkdown/jobs report/jobs-sql-excel-highcharter-custom-dates.Rmd": {
+      "checksum": "d2a090f2ad6cd6a5273c16b6965c2a19"
+    },
+    "rmarkdown/jobs report/labor_for_part_2018-11-15.xlsx": {
+      "checksum": "1070ad1c4c151cbdb8e551a86cff1442"
+    },
+    "rmarkdown/jobs report/labor_sector_2018-11-15.xlsx": {
+      "checksum": "4f88d36f3daab361d7e57666825bb424"
+    },
+    "rmarkdown/jobs report/labor_sector_most_recent_month_2018-11-15.xlsx": {
+      "checksum": "0d547fbffd0211fc51386351e71bd7c4"
+    },
+    "rmarkdown/jobs report/packrat/desc/assertthat": {
+      "checksum": "27df824bcd5ca0272e4709dab86c8fc2"
+    },
+    "rmarkdown/jobs report/packrat/desc/backports": {
+      "checksum": "f9556b346045e54345a45baa558f6004"
+    },
+    "rmarkdown/jobs report/packrat/desc/base64enc": {
+      "checksum": "2fa565913cb0ff8b1f589b07c2baa14b"
+    },
+    "rmarkdown/jobs report/packrat/desc/BH": {
+      "checksum": "db67c14b20e3e880b71af7c859da7ea7"
+    },
+    "rmarkdown/jobs report/packrat/desc/bindr": {
+      "checksum": "2d0f6a0c868adc2b638f38a0b7e2a16d"
+    },
+    "rmarkdown/jobs report/packrat/desc/bindrcpp": {
+      "checksum": "c6d63f30f41b0e7f12ca827fe5e505d1"
+    },
+    "rmarkdown/jobs report/packrat/desc/bit": {
+      "checksum": "6ea4ddc7f476dc7653ca358782ae273f"
+    },
+    "rmarkdown/jobs report/packrat/desc/bit64": {
+      "checksum": "18a03af6542d02c2f1219156570a4529"
+    },
+    "rmarkdown/jobs report/packrat/desc/blastula": {
+      "checksum": "9b3ceacec2d3dbe537dbea8d87a00639"
+    },
+    "rmarkdown/jobs report/packrat/desc/blob": {
+      "checksum": "dd7dd30e865a82a6f954dc32604e6d5a"
+    },
+    "rmarkdown/jobs report/packrat/desc/broom": {
+      "checksum": "0e855e0d3f4e1b4fd7b7177c892991a8"
+    },
+    "rmarkdown/jobs report/packrat/desc/callr": {
+      "checksum": "ebb8cf8e979a8ca241db76dd16337ede"
+    },
+    "rmarkdown/jobs report/packrat/desc/cellranger": {
+      "checksum": "b8e16c9b937224ed6e7f98200e967228"
+    },
+    "rmarkdown/jobs report/packrat/desc/cli": {
+      "checksum": "cf75c7c5651e653f5eb801d437cfcff2"
+    },
+    "rmarkdown/jobs report/packrat/desc/colorspace": {
+      "checksum": "fa57ee35c59428a98a31da2764c207de"
+    },
+    "rmarkdown/jobs report/packrat/desc/commonmark": {
+      "checksum": "9291c36101a593d17a57608f23baf2fe"
+    },
+    "rmarkdown/jobs report/packrat/desc/config": {
+      "checksum": "84e4ffcf742692f1ac977cf91d8119f7"
+    },
+    "rmarkdown/jobs report/packrat/desc/crayon": {
+      "checksum": "42c96619d8f82a234cf2f54b5fca0668"
+    },
+    "rmarkdown/jobs report/packrat/desc/crosstalk": {
+      "checksum": "7dcb54cb6a318dbf2961123cb295a836"
+    },
+    "rmarkdown/jobs report/packrat/desc/curl": {
+      "checksum": "40cf23c1660ff3420ec5b31a9f23ca1f"
+    },
+    "rmarkdown/jobs report/packrat/desc/data.table": {
+      "checksum": "55a441591e5750c23c7d142248520fb3"
+    },
+    "rmarkdown/jobs report/packrat/desc/DBI": {
+      "checksum": "58899f073ac56cbfec129b3eab9c8c48"
+    },
+    "rmarkdown/jobs report/packrat/desc/dbplyr": {
+      "checksum": "c593d42ca6cba19707e68e48fdc9ba87"
+    },
+    "rmarkdown/jobs report/packrat/desc/devtools": {
+      "checksum": "d356174173ba3902e6ec6f34642af679"
+    },
+    "rmarkdown/jobs report/packrat/desc/dichromat": {
+      "checksum": "e505142c82edc7b9e46252001a22ea0f"
+    },
+    "rmarkdown/jobs report/packrat/desc/digest": {
+      "checksum": "3225ff331178ee5b4eb4916d1896c3c0"
+    },
+    "rmarkdown/jobs report/packrat/desc/downloader": {
+      "checksum": "723e54e0da51d4525a0f990b5deada47"
+    },
+    "rmarkdown/jobs report/packrat/desc/dplyr": {
+      "checksum": "a81e29365833f7b6eecc046156f81d96"
+    },
+    "rmarkdown/jobs report/packrat/desc/evaluate": {
+      "checksum": "f10e369511aa332646ecb69346ca5a45"
+    },
+    "rmarkdown/jobs report/packrat/desc/forcats": {
+      "checksum": "e00e77721e343fefa53c6503dd9f6ecc"
+    },
+    "rmarkdown/jobs report/packrat/desc/forecast": {
+      "checksum": "c5e3aa0f19a626d7e74f079eb4efe669"
+    },
+    "rmarkdown/jobs report/packrat/desc/foreign": {
+      "checksum": "e016edc9b246c1f92fdc7f2f0394381f"
+    },
+    "rmarkdown/jobs report/packrat/desc/formattable": {
+      "checksum": "8fac54295597dfab2126f5a8466c9fa5"
+    },
+    "rmarkdown/jobs report/packrat/desc/fracdiff": {
+      "checksum": "8944e6d11b588ffffd306b14e5e6111e"
+    },
+    "rmarkdown/jobs report/packrat/desc/ggplot2": {
+      "checksum": "568b6716d74442d6216d38d882789868"
+    },
+    "rmarkdown/jobs report/packrat/desc/git2r": {
+      "checksum": "f93ea5954b3eb68d59cf70d87f438180"
+    },
+    "rmarkdown/jobs report/packrat/desc/glue": {
+      "checksum": "71265f8fa9c4646f782945b99a455b32"
+    },
+    "rmarkdown/jobs report/packrat/desc/gtable": {
+      "checksum": "3f39430556b6840c49d415f00eddb5df"
+    },
+    "rmarkdown/jobs report/packrat/desc/haven": {
+      "checksum": "288ba6dde8c6036bb4de401d87d98359"
+    },
+    "rmarkdown/jobs report/packrat/desc/highcharter": {
+      "checksum": "695574d32d53ef44187216ae3d2b2940"
+    },
+    "rmarkdown/jobs report/packrat/desc/highr": {
+      "checksum": "10808348cce34db4580a8071607197c4"
+    },
+    "rmarkdown/jobs report/packrat/desc/hms": {
+      "checksum": "fc3a00be37f4f6b71991b18352d550ab"
+    },
+    "rmarkdown/jobs report/packrat/desc/htmltools": {
+      "checksum": "705c57155aa86129b1f2585cc5ecd3df"
+    },
+    "rmarkdown/jobs report/packrat/desc/htmlwidgets": {
+      "checksum": "17c881d9438c6f0ca1e3858a6cecbac8"
+    },
+    "rmarkdown/jobs report/packrat/desc/httpuv": {
+      "checksum": "443c0c4d821dd5874f15b2e483f661bf"
+    },
+    "rmarkdown/jobs report/packrat/desc/httr": {
+      "checksum": "ed0274154b839c314e658d501a37819c"
+    },
+    "rmarkdown/jobs report/packrat/desc/igraph": {
+      "checksum": "a056efa45b3369e8eb0496e60caee0a1"
+    },
+    "rmarkdown/jobs report/packrat/desc/jsonlite": {
+      "checksum": "9ba09ca73cc992e0346912f21f342170"
+    },
+    "rmarkdown/jobs report/packrat/desc/knitr": {
+      "checksum": "cd86ca198fc4718818b4ef63e1d7069d"
+    },
+    "rmarkdown/jobs report/packrat/desc/labeling": {
+      "checksum": "272f85053d4cdb348150f15744e3523d"
+    },
+    "rmarkdown/jobs report/packrat/desc/later": {
+      "checksum": "d8e28a7d9ac2272c0d356b1369f22aec"
+    },
+    "rmarkdown/jobs report/packrat/desc/lattice": {
+      "checksum": "0eaaeb0aa7163b29094809d65e700126"
+    },
+    "rmarkdown/jobs report/packrat/desc/lazyeval": {
+      "checksum": "b756923ddfaf27787cdbeebc8154ea21"
+    },
+    "rmarkdown/jobs report/packrat/desc/lmtest": {
+      "checksum": "001418921405c57daddda10dd2ab757a"
+    },
+    "rmarkdown/jobs report/packrat/desc/lubridate": {
+      "checksum": "192564e8ca4fd7806e3d741fcef92788"
+    },
+    "rmarkdown/jobs report/packrat/desc/magrittr": {
+      "checksum": "fd259c52f2108a51d1d44f486576fe57"
+    },
+    "rmarkdown/jobs report/packrat/desc/markdown": {
+      "checksum": "1245bb48e347f5d22f93820b54eed63b"
+    },
+    "rmarkdown/jobs report/packrat/desc/MASS": {
+      "checksum": "b96d44edf56c8ee6d3383294edc05810"
+    },
+    "rmarkdown/jobs report/packrat/desc/Matrix": {
+      "checksum": "c9a16fb12d2fbf87381fe95210032f95"
+    },
+    "rmarkdown/jobs report/packrat/desc/memoise": {
+      "checksum": "2979b4e4b0e3c13f76900559a34ec062"
+    },
+    "rmarkdown/jobs report/packrat/desc/mgcv": {
+      "checksum": "14b585dbdce86e00957a2c014e7616ca"
+    },
+    "rmarkdown/jobs report/packrat/desc/mime": {
+      "checksum": "a2bf6c83c4ca1078e11a230a3da61e35"
+    },
+    "rmarkdown/jobs report/packrat/desc/mnormt": {
+      "checksum": "eec121c0a340fe2b4ddc5f37058b51da"
+    },
+    "rmarkdown/jobs report/packrat/desc/modelr": {
+      "checksum": "e813309da1700a2c21c15408af7ec607"
+    },
+    "rmarkdown/jobs report/packrat/desc/munsell": {
+      "checksum": "392b1f193c6c2753eb295bdf3e1f5083"
+    },
+    "rmarkdown/jobs report/packrat/desc/nlme": {
+      "checksum": "67c9d174cf8e021cb48fbca3004f1b59"
+    },
+    "rmarkdown/jobs report/packrat/desc/nnet": {
+      "checksum": "d7211dbc085d840ad109c62a5897011f"
+    },
+    "rmarkdown/jobs report/packrat/desc/odbc": {
+      "checksum": "9a405fb873edae5f54a0d6af4b889b88"
+    },
+    "rmarkdown/jobs report/packrat/desc/openssl": {
+      "checksum": "159cc71ff74e2d339dd3e7dac10f5a9a"
+    },
+    "rmarkdown/jobs report/packrat/desc/openxlsx": {
+      "checksum": "fefa230b8e1c2a076765763f4a69ac9c"
+    },
+    "rmarkdown/jobs report/packrat/desc/packrat": {
+      "checksum": "4452e5fe0c6042f1ddc1f4e495c15390"
+    },
+    "rmarkdown/jobs report/packrat/desc/padr": {
+      "checksum": "5e65767672fe8215c139c417af900c15"
+    },
+    "rmarkdown/jobs report/packrat/desc/PerformanceAnalytics": {
+      "checksum": "44b75f238ef62b8908ee9163f4bdcdd0"
+    },
+    "rmarkdown/jobs report/packrat/desc/pillar": {
+      "checksum": "f6dda4085ca80fe82a6cc73388783375"
+    },
+    "rmarkdown/jobs report/packrat/desc/pkgconfig": {
+      "checksum": "6721377fc0dd8cc005c2515cb698ebb3"
+    },
+    "rmarkdown/jobs report/packrat/desc/plogr": {
+      "checksum": "3886a80949dd097f1faedf89766056f9"
+    },
+    "rmarkdown/jobs report/packrat/desc/plyr": {
+      "checksum": "dba8c5aa59cecd14c3d9c56bb5f29488"
+    },
+    "rmarkdown/jobs report/packrat/desc/praise": {
+      "checksum": "4f730492cd0044b481070f3db26c8382"
+    },
+    "rmarkdown/jobs report/packrat/desc/prettyunits": {
+      "checksum": "24d45da7cb3a7887eca9694e7ba82ff6"
+    },
+    "rmarkdown/jobs report/packrat/desc/processx": {
+      "checksum": "f5b92b5e6eb15f3211e69aa18cee7648"
+    },
+    "rmarkdown/jobs report/packrat/desc/promises": {
+      "checksum": "8c0cbabe11764eb93f81982055ccc2da"
+    },
+    "rmarkdown/jobs report/packrat/desc/psych": {
+      "checksum": "94741e0d274e156208f491a0b0256cb5"
+    },
+    "rmarkdown/jobs report/packrat/desc/purrr": {
+      "checksum": "6bd1fe2a92a6e1df15ae65732ec5ce53"
+    },
+    "rmarkdown/jobs report/packrat/desc/quadprog": {
+      "checksum": "65ea117a8cb24e41c74ee8ebb86aad93"
+    },
+    "rmarkdown/jobs report/packrat/desc/Quandl": {
+      "checksum": "7342c1d071c4e324d0b0fdad35a0ae73"
+    },
+    "rmarkdown/jobs report/packrat/desc/quantmod": {
+      "checksum": "351433cd46e8c34470aaa19d2021fff2"
+    },
+    "rmarkdown/jobs report/packrat/desc/R6": {
+      "checksum": "ec3779a0aa2435414e04e250ffce6318"
+    },
+    "rmarkdown/jobs report/packrat/desc/RColorBrewer": {
+      "checksum": "49e3a215098fee76b9e200ccde9b4074"
+    },
+    "rmarkdown/jobs report/packrat/desc/Rcpp": {
+      "checksum": "294045333b8bac1c8aa4977827271626"
+    },
+    "rmarkdown/jobs report/packrat/desc/RcppArmadillo": {
+      "checksum": "7073aeb4df4a35f5fa6d11eab5340ca0"
+    },
+    "rmarkdown/jobs report/packrat/desc/readr": {
+      "checksum": "14b6ea9f68075077f9b01c9e3b2a2aa0"
+    },
+    "rmarkdown/jobs report/packrat/desc/readxl": {
+      "checksum": "8943f61f0a1126983e57db0466851843"
+    },
+    "rmarkdown/jobs report/packrat/desc/rematch": {
+      "checksum": "d5e15ebb8ba8843336686bb62e364b6c"
+    },
+    "rmarkdown/jobs report/packrat/desc/reprex": {
+      "checksum": "8d63a6eb5c132798e1b2176ffcb5d4fb"
+    },
+    "rmarkdown/jobs report/packrat/desc/reshape2": {
+      "checksum": "9c21355d4d2ee90df5fef7123f3de54b"
+    },
+    "rmarkdown/jobs report/packrat/desc/rlang": {
+      "checksum": "2f011f9998c77f4be5a88c800ba009f7"
+    },
+    "rmarkdown/jobs report/packrat/desc/rlist": {
+      "checksum": "3968b93f8e88ad7433f35611576a9417"
+    },
+    "rmarkdown/jobs report/packrat/desc/rmarkdown": {
+      "checksum": "081567f24098ee760f9e67e25c42d170"
+    },
+    "rmarkdown/jobs report/packrat/desc/rprojroot": {
+      "checksum": "3bec2153533ce3eb691a761bf2a86d8f"
+    },
+    "rmarkdown/jobs report/packrat/desc/rstudioapi": {
+      "checksum": "108c3287366634a154e394af15a275a4"
+    },
+    "rmarkdown/jobs report/packrat/desc/rvest": {
+      "checksum": "ec6761ab90743ed5b49d6aa8c92ed914"
+    },
+    "rmarkdown/jobs report/packrat/desc/scales": {
+      "checksum": "a7df8f367cdee8014b4a6ccaa0f1ddcb"
+    },
+    "rmarkdown/jobs report/packrat/desc/selectr": {
+      "checksum": "9e171e428cb89a7cc16ec5c11e15c667"
+    },
+    "rmarkdown/jobs report/packrat/desc/shiny": {
+      "checksum": "c97ea768b98f9ffb3d50e89caaac34c8"
+    },
+    "rmarkdown/jobs report/packrat/desc/sourcetools": {
+      "checksum": "39afb086b9934a91777291181fbfe6bf"
+    },
+    "rmarkdown/jobs report/packrat/desc/stringi": {
+      "checksum": "628674ae05b7fa52682df194db49a627"
+    },
+    "rmarkdown/jobs report/packrat/desc/stringr": {
+      "checksum": "6420c44de53a4731fb3d16a62e875a46"
+    },
+    "rmarkdown/jobs report/packrat/desc/testthat": {
+      "checksum": "8c1596e73f5299269cdc5e23d6e3a153"
+    },
+    "rmarkdown/jobs report/packrat/desc/tibble": {
+      "checksum": "cad4f05b953dd7c9e703eabc7dfa0466"
+    },
+    "rmarkdown/jobs report/packrat/desc/tidyquant": {
+      "checksum": "42282bdab383570aae9384bfdc46cf37"
+    },
+    "rmarkdown/jobs report/packrat/desc/tidyr": {
+      "checksum": "5564c04190050261a22b7fc3e42a4616"
+    },
+    "rmarkdown/jobs report/packrat/desc/tidyselect": {
+      "checksum": "67ea93f9fdcf53eb4dcee74ae029105d"
+    },
+    "rmarkdown/jobs report/packrat/desc/tidyverse": {
+      "checksum": "debfc5114560ee5a44ffafc1a97a37dd"
+    },
+    "rmarkdown/jobs report/packrat/desc/timeDate": {
+      "checksum": "e81c1b5f430688641a0d9b63f6e47a63"
+    },
+    "rmarkdown/jobs report/packrat/desc/timetk": {
+      "checksum": "18f0bebe3cc5bc95775d9c7d35f1a255"
+    },
+    "rmarkdown/jobs report/packrat/desc/tinytex": {
+      "checksum": "6bdac8d6db6998117df9166c7196ec61"
+    },
+    "rmarkdown/jobs report/packrat/desc/tseries": {
+      "checksum": "1fb7c27fc5d4d9a1aaf76497b3f8588d"
+    },
+    "rmarkdown/jobs report/packrat/desc/TTR": {
+      "checksum": "03e9f8b1ddab8bb41c07202bd8765ffd"
+    },
+    "rmarkdown/jobs report/packrat/desc/urca": {
+      "checksum": "e5d7982addc90e88ec709583a04c1a56"
+    },
+    "rmarkdown/jobs report/packrat/desc/uroot": {
+      "checksum": "de28d72491c3c064ff7c5745cf19e651"
+    },
+    "rmarkdown/jobs report/packrat/desc/utf8": {
+      "checksum": "4d883d64cd9999e3f2731b0ba0800186"
+    },
+    "rmarkdown/jobs report/packrat/desc/viridisLite": {
+      "checksum": "6ecafb1f272c6b4a6b4cf15f76fcf7b5"
+    },
+    "rmarkdown/jobs report/packrat/desc/whisker": {
+      "checksum": "9f9914c3a364c8b3a70ed4cd178d6945"
+    },
+    "rmarkdown/jobs report/packrat/desc/withr": {
+      "checksum": "a9ade60577c1bacedfea05054ee4fdd5"
+    },
+    "rmarkdown/jobs report/packrat/desc/xfun": {
+      "checksum": "843edf043acf7e27dd0d02dcff8dbe32"
+    },
+    "rmarkdown/jobs report/packrat/desc/XML": {
+      "checksum": "46404619d244b6bd745df08af6734322"
+    },
+    "rmarkdown/jobs report/packrat/desc/xml2": {
+      "checksum": "50ae7b59aaf3a986812cc8eda5a369c6"
+    },
+    "rmarkdown/jobs report/packrat/desc/xtable": {
+      "checksum": "2b3740cd7676c7450665180e32470754"
+    },
+    "rmarkdown/jobs report/packrat/desc/xts": {
+      "checksum": "c6042aa809a79a5cbfdabcf1b8f1e07a"
+    },
+    "rmarkdown/jobs report/packrat/desc/yaml": {
+      "checksum": "76d22734a5aed452e2ffe443f51e9c29"
+    },
+    "rmarkdown/jobs report/packrat/desc/zip": {
+      "checksum": "a5290143724c9aa392556ab3da0b790e"
+    },
+    "rmarkdown/jobs report/packrat/desc/zoo": {
+      "checksum": "90382ee7a6b8f4f0ba63293024b242f5"
+    },
+    "rmarkdown/jobs report/packrat/packrat.lock": {
+      "checksum": "133705de18b07101069ee9aee2e5b087"
+    },
+    "rmarkdown/jobs report/rsconnect/documents/jobs-sql-excel-highcharter-custom-dates.Rmd/colorado.rstudio.com/nick/jobs-sql-excel-highcharter-custom-dates.dcf": {
+      "checksum": "6db918a66d1bf857404ddecd669f620d"
+    },
+    "rmarkdown/jobs report/total_employ_hc_2018-11-15.xlsx": {
+      "checksum": "fd9a281678db3b3bc84d5b6dd0e3f6c3"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/bank.png": {
+      "checksum": "d21aae258e00006c50215e1c48f32c41"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/GOOG_2018-11-15.csv": {
+      "checksum": "a9e05e671d50f07c4c5b1f26b17c5ee5"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/GOOG_2018-12-11.csv": {
+      "checksum": "6fca01007e079f47d1691f8a037a6a71"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/GOOG_2019-01-16.csv": {
+      "checksum": "ccb8d32ab20e6b91f0fe4edfa976a2d8"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/GOOG_2019-02-12.csv": {
+      "checksum": "f1dd8e703d6191f7cb5473d257ade532"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/GOOG_2019-03-01.csv": {
+      "checksum": "80d8471f07bafaea6a5ddcd71d2bd9b1"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/GOOG_2019-03-05.csv": {
+      "checksum": "0ceb4cc893ed932147e993cbe1a26cb9"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/GS_2019-02-12.csv": {
+      "checksum": "7cc4346a01f994a8cc43190abee86a5f"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/IBM_2019-01-16.csv": {
+      "checksum": "f0b1c6cc70d74ca08c00d1340504f185"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/parameterized-html-stock-many-inputs.html": {
+      "checksum": "f212e1e9c85f450d5a8ad43ff448f941"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/parameterized-html-stock-many-inputs.Rmd": {
+      "checksum": "dff357530cab441665988438074fd2b0"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/rsconnect/documents/parameterized-html-stock-many-inputs.Rmd/colorado.rstudio.com/nick/bank_stock_report.dcf": {
+      "checksum": "28a95868f3e6434993ee882a4a6fc798"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/rsconnect/documents/parameterized-html-stock-many-inputs.Rmd/colorado.rstudio.com/nick/parameterized-html-stock-many-inputs.dcf": {
+      "checksum": "c3763180f43d688a5593110d23095560"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/rsconnect/documents/parameterized-html-stock-many-inputs.Rmd/colorado.rstudio.com/nick/parameterized_stock_report.dcf": {
+      "checksum": "79570d5d78679e28043421f9c7c585a9"
+    },
+    "rmarkdown/parameterized-html-stock-many-inputs/styles.css": {
+      "checksum": "25761c7f52726ce732d483edb5c0aa1e"
+    },
+    "rmarkdown/trelliscopejs/rsconnect/documents/trelliscopejs.Rmd/colorado.rstudio.com/nick/trelliscopejs_in_r_markdown.dcf": {
+      "checksum": "0dea437ba740e690c82e566fd33c98d3"
+    },
+    "rmarkdown/trelliscopejs/trelliscopejs.Rmd": {
+      "checksum": "d3bab1ba7c537424548a29f1e8e247a7"
+    },
+    ".Ruserdata/nick/.Rhistory": {
+      "checksum": "c2b31fc314fb2590ad271b166605b03f"
+    },
+    "shiny/file-download/app.R": {
+      "checksum": "24b0e6483f33a9a70936b6236aa5f883"
+    },
+    "shiny/file-download/rsconnect/colorado.rstudio.com/nick/file-download.dcf": {
+      "checksum": "e638724dbba7870dcefe3807e6e595d9"
+    },
+    "shiny/fileInput/app.R": {
+      "checksum": "3214b46ab1f110aae9a42eaeac5a55c0"
+    },
+    "shiny/fileInput/rsconnect/colorado.rstudio.com/nick/fileinput_example.dcf": {
+      "checksum": "53523605411af5cd1c3459fff57de8c1"
+    },
+    "shiny/flexdb-port-vol/flexdb-port-vol.Rmd": {
+      "checksum": "81ba14dc32aa2ccd1cbc3ea7618a0fa3"
+    },
+    "shiny/flexdb-port-vol/function-folder/helpers.R": {
+      "checksum": "c9afd56034a57ef56ca2489016a27d43"
+    },
+    "shiny/flexdb-port-vol/rsconnect/documents/flexdb-port-vol.Rmd/colorado.rstudio.com/nick/flexdb-port-vol.dcf": {
+      "checksum": "357d6565eef5d216f3aa0059bee65584"
+    },
+    "shiny/flexdb-port-vol/rsconnect/documents/flexdb-port-vol.Rmd/colorado.rstudio.com/nick/portfolio-volatility-flexdb.dcf": {
+      "checksum": "8293863f48de164d13312ad6a918b831"
+    },
+    "tx_m/returns_parameterized_rmarkdown/etf_returns.html": {
+      "checksum": "033c5f953f3a740d9f04fc6378582e9f"
+    },
+    "tx_m/returns_parameterized_rmarkdown/etf_returns.Rmd": {
+      "checksum": "072faf541c72e12df4a93f26ac5741b1"
+    },
+    "tx_m/returns_parameterized_rmarkdown/rsconnect/documents/etf_returns.Rmd/colorado.rstudio.com/nick/etf_monthly_returns_parameterized_r_markdown.dcf": {
+      "checksum": "0f1b3164bc37bd7910f7764364f6e83b"
+    },
+    "tx_m/returns_shiny/app.R": {
+      "checksum": "42e7c52ef1260618a95c34e4d4f7c898"
+    },
+    "tx_m/returns_shiny/pdf_report.Rmd": {
+      "checksum": "d7abaf5858f79884d14777257f9a7a08"
+    },
+    "tx_m/returns_shiny/rsconnect/colorado.rstudio.com/nick/etf_monthly_returns_shiny2.dcf": {
+      "checksum": "8f2373f80efde54ca6ab1553c11084b7"
+    },
+    "tx_m/returns_shiny/rsconnect/colorado.rstudio.com/nick/etf_monthly_returns_shiny.dcf": {
+      "checksum": "c7e6ba0c019639b56eb6d43de3d33a31"
+    }
+  },
+  "users": null
+}

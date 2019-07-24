@@ -33,28 +33,28 @@ Build Portfolio {.sidebar}
 helpText("Choose assets and weights.")
 
 fluidRow(
-  column(6,
+  column(7,
          textInput("stock1", "Stock 1", "GOOG")),
   column(4,
          numericInput("w1", "Portf. %", 25, min = 1, max = 100))
 )  
 
 fluidRow(
-  column(6,
+  column(7,
          textInput("stock2", "Stock 2", "FB")),
   column(4,
          numericInput("w2", "Portf. %", 25, min = 1, max = 100))
 )
 
 fluidRow(
-  column(6,
+  column(7,
          textInput("stock3", "Stock 3", "AMZN")),
   column(4,
          numericInput("w3", "Portf. %", 50, min = 1, max = 100))
 )
 
 fluidRow(
-  column(6,
+  column(7,
          dateInput("start_date", "Start Date", value = "2013-01-01")),
   column(4,
          numericInput("window", "Window", 10, min = 3, max = 50, step = 5))

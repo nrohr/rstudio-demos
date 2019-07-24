@@ -1,0 +1,12 @@
+name: parameterized-html-stock-many-inputs
+title: parameterized-html-stock-many-inputs
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: http://colorado.rstudio.com:3939/__api__
+appId: 1610
+bundleId: 21312
+url: http://colorado.rstudio.com:3939/content/1610/
+when: 1541410013.46954
+asMultiple: FALSE
+asStatic: FALSE

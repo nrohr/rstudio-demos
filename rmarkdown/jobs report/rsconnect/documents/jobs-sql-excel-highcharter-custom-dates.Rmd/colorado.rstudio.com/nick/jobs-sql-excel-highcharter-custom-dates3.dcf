@@ -1,12 +1,12 @@
-name: jobs-sql-excel-highcharter-custom-dates
+name: jobs-sql-excel-highcharter-custom-dates3
 title: jobs-sql-excel-highcharter-custom-dates
 username: nick
 account: nick
 server: colorado.rstudio.com
 hostUrl: http://colorado.rstudio.com:3939/__api__
-appId: 1676
-bundleId: 22180
-url: http://colorado.rstudio.com:3939/content/1676/
-when: 1542301624.35747
+appId: 1606
+bundleId: 21246
+url: http://colorado.rstudio.com:3939/content/1606/
+when: 1541344645.42279
 asMultiple: FALSE
 asStatic: FALSE

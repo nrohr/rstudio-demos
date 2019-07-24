@@ -1,0 +1,12 @@
+name: etf_monthly_returns_parameterized_r_markdown
+title: ETF Monthly Returns (Parameterized R Markdown)
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: http://colorado.rstudio.com:3939/__api__
+appId: 1751
+bundleId: 23643
+url: http://colorado.rstudio.com:3939/etf_rmd/
+when: 1544034887.81059
+asMultiple: FALSE
+asStatic: FALSE

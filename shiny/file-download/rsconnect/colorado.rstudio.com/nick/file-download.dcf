@@ -1,0 +1,12 @@
+name: file-download
+title: file-download
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: https://colorado.rstudio.com/rsc/__api__
+appId: 2242
+bundleId: 25329
+url: https://colorado.rstudio.com:443/rsc/content/2242/
+when: 1552675559.64552
+asMultiple: FALSE
+asStatic: FALSE

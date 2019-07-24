@@ -3,10 +3,10 @@ title:
 username: nick
 account: nick
 server: colorado.rstudio.com
-hostUrl: http://colorado.rstudio.com:3939/__api__
+hostUrl: https://colorado.rstudio.com/rsc/__api__
 appId: 1514
-bundleId: 21237
-url: http://colorado.rstudio.com:3939/content/1514/
-when: 1541338503.19914
+bundleId: 26208
+url: https://colorado.rstudio.com:443/rsc/portfolio-volatility/
+when: 1562692768.87815
 asMultiple: FALSE
 asStatic: FALSE

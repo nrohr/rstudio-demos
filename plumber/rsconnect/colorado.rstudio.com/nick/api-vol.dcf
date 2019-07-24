@@ -3,10 +3,10 @@ title:
 username: nick
 account: nick
 server: colorado.rstudio.com
-hostUrl: http://colorado.rstudio.com:3939/__api__
+hostUrl: https://colorado.rstudio.com/rsc/__api__
 appId: 1211
-bundleId: 21235
-url: http://colorado.rstudio.com:3939/stock-vol-api/
-when: 1541338234.11312
+bundleId: 25774
+url: https://colorado.rstudio.com:443/rsc/stock-vol-api/
+when: 1557942246.20586
 asMultiple: FALSE
 asStatic: FALSE

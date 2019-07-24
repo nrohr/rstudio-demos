@@ -1,0 +1,12 @@
+name: fileinput_example
+title: fileInput example
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: https://colorado.rstudio.com/rsc/__api__
+appId: 2241
+bundleId: 25325
+url: https://colorado.rstudio.com:443/rsc/content/2241/
+when: 1552675013.74613
+asMultiple: FALSE
+asStatic: FALSE

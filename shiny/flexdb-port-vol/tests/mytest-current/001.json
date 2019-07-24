@@ -1,0 +1,1605 @@
+{
+  "input": {
+    "go": 3,
+    "start_date": "2013-01-01",
+    "stock1": "TSLA",
+    "stock2": "FB",
+    "stock3": "AMZN",
+    "w1": 30,
+    "w2": 20,
+    "w3": 50,
+    "window": 10
+  },
+  "output": {
+    "__reactivedoc__": {
+      "html": "[html data sha1: e8f833edfc0a8bfeecf85b904f718d5d4fd92b44]",
+      "deps": [
+        {
+          "name": "jquery",
+          "version": "1.11.3",
+          "src": {
+            "href": "jquery-1.11.3"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "bootstrap",
+          "version": "3.3.5",
+          "src": {
+            "href": "bootstrap-3.3.5"
+          },
+          "meta": {
+            "viewport": "width=device-width, initial-scale=1"
+          },
+          "script": [
+            "js/bootstrap.min.js",
+            "shim/html5shiv.min.js",
+            "shim/respond.min.js"
+          ],
+          "stylesheet": "css/cosmo.min.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "stickytableheaders",
+          "version": "0.1.19",
+          "src": {
+            "href": "stickytableheaders-0.1.19"
+          },
+          "meta": null,
+          "script": "jquery.stickytableheaders.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "bootstrap-datepicker",
+          "version": "1.6.4",
+          "src": {
+            "href": "shared/datepicker"
+          },
+          "meta": null,
+          "script": "js/bootstrap-datepicker.min.js",
+          "stylesheet": "css/bootstrap-datepicker3.min.css",
+          "head": "<script>\n(function() {\n  var datepicker = $.fn.datepicker.noConflict();\n  $.fn.bsDatepicker = datepicker;\n})();\n<\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "htmlwidgets",
+          "version": "1.3",
+          "src": {
+            "href": "htmlwidgets-1.3"
+          },
+          "meta": null,
+          "script": "htmlwidgets.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "proj4js",
+          "version": "2.3.15",
+          "src": {
+            "href": "proj4js-2.3.15"
+          },
+          "meta": null,
+          "script": "proj4.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "highcharts",
+          "version": "7.0.1",
+          "src": {
+            "href": "highcharts-7.0.1"
+          },
+          "meta": null,
+          "script": [
+            "highcharts.js",
+            "highcharts-3d.js",
+            "highcharts-more.js",
+            "modules/stock.js",
+            "modules/map.js",
+            "modules/annotations.js",
+            "modules/boost.js",
+            "modules/data.js",
+            "modules/drag-panes.js",
+            "modules/drilldown.js",
+            "modules/item-series.js",
+            "modules/offline-exporting.js",
+            "modules/overlapping-datalabels.js",
+            "modules/exporting.js",
+            "modules/export-data.js",
+            "modules/funnel.js",
+            "modules/heatmap.js",
+            "modules/treemap.js",
+            "modules/sankey.js",
+            "modules/solid-gauge.js",
+            "modules/streamgraph.js",
+            "modules/sunburst.js",
+            "modules/vector.js",
+            "modules/wordcloud.js",
+            "modules/xrange.js",
+            "modules/tilemap.js",
+            "modules/venn.js",
+            "modules/gantt.js",
+            "modules/timeline.js",
+            "modules/parallel-coordinates.js",
+            "plugins/grouped-categories.js",
+            "plugins/motion.js",
+            "plugins/multicolor_series.js",
+            "custom/reset.js",
+            "custom/symbols-extra.js",
+            "custom/text-symbols.js"
+          ],
+          "stylesheet": [
+            "css/motion.css",
+            "css/htmlwdgtgrid.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "highchart-binding",
+          "version": "0.7.0",
+          "src": {
+            "href": "highchart-binding-0.7.0"
+          },
+          "meta": null,
+          "script": "highchart.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "rmarkdown-performance",
+          "version": "0.1",
+          "src": {
+            "href": "rmarkdown-performance-0.1"
+          },
+          "meta": null,
+          "script": "rmd_perf.js",
+          "stylesheet": "rmd_perf.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "out105dc3be6e42f345": {
+      "x": {
+        "hc_opts": {
+          "title": {
+            "text": "Volatility Contribution"
+          },
+          "yAxis": {
+            "title": {
+              "text": null
+            },
+            "labels": {
+              "format": "{value}%"
+            },
+            "opposite": false
+          },
+          "credits": {
+            "enabled": false
+          },
+          "exporting": {
+            "enabled": true
+          },
+          "plotOptions": {
+            "series": {
+              "label": {
+                "enabled": false
+              },
+              "turboThreshold": 0
+            },
+            "treemap": {
+              "layoutAlgorithm": "squarified"
+            }
+          },
+          "series": [
+            {
+              "data": [
+                [
+                  1388448000000,
+                  71.685
+                ],
+                [
+                  1391126400000,
+                  77.81
+                ],
+                [
+                  1393545600000,
+                  76.51
+                ],
+                [
+                  1396224000000,
+                  76.069
+                ],
+                [
+                  1398816000000,
+                  52.238
+                ],
+                [
+                  1401408000000,
+                  48.317
+                ],
+                [
+                  1404086400000,
+                  55.065
+                ],
+                [
+                  1406764800000,
+                  53.252
+                ],
+                [
+                  1409270400000,
+                  60.889
+                ],
+                [
+                  1412035200000,
+                  60.286
+                ],
+                [
+                  1414713600000,
+                  55.652
+                ],
+                [
+                  1417132800000,
+                  55.581
+                ],
+                [
+                  1419984000000,
+                  50.305
+                ],
+                [
+                  1422576000000,
+                  41.731
+                ],
+                [
+                  1424995200000,
+                  37.386
+                ],
+                [
+                  1427760000000,
+                  41.256
+                ],
+                [
+                  1430352000000,
+                  41.932
+                ],
+                [
+                  1432857600000,
+                  42.866
+                ],
+                [
+                  1435622400000,
+                  43.682
+                ],
+                [
+                  1438300800000,
+                  39.095
+                ],
+                [
+                  1440979200000,
+                  25.691
+                ],
+                [
+                  1443571200000,
+                  28.672
+                ],
+                [
+                  1446163200000,
+                  28.87
+                ],
+                [
+                  1448841600000,
+                  19.849
+                ],
+                [
+                  1451520000000,
+                  21.882
+                ],
+                [
+                  1454025600000,
+                  21.082
+                ],
+                [
+                  1456704000000,
+                  31.597
+                ],
+                [
+                  1459382400000,
+                  23.108
+                ],
+                [
+                  1461888000000,
+                  27.978
+                ],
+                [
+                  1464652800000,
+                  27.617
+                ],
+                [
+                  1467244800000,
+                  33.463
+                ],
+                [
+                  1469750400000,
+                  34.26
+                ],
+                [
+                  1472601600000,
+                  36.557
+                ],
+                [
+                  1475193600000,
+                  46.657
+                ],
+                [
+                  1477872000000,
+                  44.512
+                ],
+                [
+                  1480464000000,
+                  42.657
+                ],
+                [
+                  1483056000000,
+                  34.513
+                ],
+                [
+                  1485820800000,
+                  40.03
+                ],
+                [
+                  1488240000000,
+                  37.104
+                ],
+                [
+                  1490918400000,
+                  38.692
+                ],
+                [
+                  1493337600000,
+                  41.029
+                ],
+                [
+                  1496188800000,
+                  41.997
+                ],
+                [
+                  1498780800000,
+                  42.031
+                ],
+                [
+                  1501459200000,
+                  35.773
+                ],
+                [
+                  1504137600000,
+                  40.666
+                ],
+                [
+                  1506643200000,
+                  40.912
+                ],
+                [
+                  1509408000000,
+                  47.738
+                ],
+                [
+                  1512000000000,
+                  41.763
+                ],
+                [
+                  1514505600000,
+                  43.561
+                ],
+                [
+                  1517356800000,
+                  40.712
+                ],
+                [
+                  1519776000000,
+                  30.067
+                ],
+                [
+                  1522281600000,
+                  27.894
+                ],
+                [
+                  1525046400000,
+                  37.37
+                ],
+                [
+                  1527724800000,
+                  39.723
+                ],
+                [
+                  1530230400000,
+                  38.641
+                ],
+                [
+                  1532995200000,
+                  42.443
+                ],
+                [
+                  1535673600000,
+                  44.803
+                ],
+                [
+                  1538092800000,
+                  45.962
+                ],
+                [
+                  1540944000000,
+                  45.603
+                ],
+                [
+                  1543536000000,
+                  33.608
+                ],
+                [
+                  1546214400000,
+                  38.264
+                ],
+                [
+                  1548892800000,
+                  35.276
+                ],
+                [
+                  1551312000000,
+                  13.311
+                ],
+                [
+                  1553817600000,
+                  9.126
+                ],
+                [
+                  1556582400000,
+                  9.621
+                ],
+                [
+                  1557187200000,
+                  -8.212
+                ]
+              ],
+              "name": "TSLA"
+            },
+            {
+              "data": [
+                [
+                  1388448000000,
+                  22.654
+                ],
+                [
+                  1391126400000,
+                  20.848
+                ],
+                [
+                  1393545600000,
+                  16.612
+                ],
+                [
+                  1396224000000,
+                  16.423
+                ],
+                [
+                  1398816000000,
+                  31.217
+                ],
+                [
+                  1401408000000,
+                  29.701
+                ],
+                [
+                  1404086400000,
+                  24.307
+                ],
+                [
+                  1406764800000,
+                  23.152
+                ],
+                [
+                  1409270400000,
+                  20.283
+                ],
+                [
+                  1412035200000,
+                  17.067
+                ],
+                [
+                  1414713600000,
+                  13.999
+                ],
+                [
+                  1417132800000,
+                  13.513
+                ],
+                [
+                  1419984000000,
+                  12.164
+                ],
+                [
+                  1422576000000,
+                  10.912
+                ],
+                [
+                  1424995200000,
+                  3.884
+                ],
+                [
+                  1427760000000,
+                  3.173
+                ],
+                [
+                  1430352000000,
+                  2.495
+                ],
+                [
+                  1432857600000,
+                  -2.511
+                ],
+                [
+                  1435622400000,
+                  -1.15
+                ],
+                [
+                  1438300800000,
+                  -1.349
+                ],
+                [
+                  1440979200000,
+                  4.864
+                ],
+                [
+                  1443571200000,
+                  4.985
+                ],
+                [
+                  1446163200000,
+                  4.835
+                ],
+                [
+                  1448841600000,
+                  8.325
+                ],
+                [
+                  1451520000000,
+                  7.754
+                ],
+                [
+                  1454025600000,
+                  7.995
+                ],
+                [
+                  1456704000000,
+                  2.151
+                ],
+                [
+                  1459382400000,
+                  7.203
+                ],
+                [
+                  1461888000000,
+                  7.553
+                ],
+                [
+                  1464652800000,
+                  6.857
+                ],
+                [
+                  1467244800000,
+                  5.454
+                ],
+                [
+                  1469750400000,
+                  4.712
+                ],
+                [
+                  1472601600000,
+                  5.535
+                ],
+                [
+                  1475193600000,
+                  3.48
+                ],
+                [
+                  1477872000000,
+                  3.615
+                ],
+                [
+                  1480464000000,
+                  3.579
+                ],
+                [
+                  1483056000000,
+                  15.814
+                ],
+                [
+                  1485820800000,
+                  14.881
+                ],
+                [
+                  1488240000000,
+                  17.936
+                ],
+                [
+                  1490918400000,
+                  19.207
+                ],
+                [
+                  1493337600000,
+                  18.791
+                ],
+                [
+                  1496188800000,
+                  18.118
+                ],
+                [
+                  1498780800000,
+                  16.451
+                ],
+                [
+                  1501459200000,
+                  18.06
+                ],
+                [
+                  1504137600000,
+                  15.366
+                ],
+                [
+                  1506643200000,
+                  18.019
+                ],
+                [
+                  1509408000000,
+                  11.345
+                ],
+                [
+                  1512000000000,
+                  10.389
+                ],
+                [
+                  1514505600000,
+                  5.742
+                ],
+                [
+                  1517356800000,
+                  7.252
+                ],
+                [
+                  1519776000000,
+                  5.623
+                ],
+                [
+                  1522281600000,
+                  6.471
+                ],
+                [
+                  1525046400000,
+                  11.564
+                ],
+                [
+                  1527724800000,
+                  12.24
+                ],
+                [
+                  1530230400000,
+                  13.687
+                ],
+                [
+                  1532995200000,
+                  12.945
+                ],
+                [
+                  1535673600000,
+                  15.442
+                ],
+                [
+                  1538092800000,
+                  14.909
+                ],
+                [
+                  1540944000000,
+                  14.994
+                ],
+                [
+                  1543536000000,
+                  15.43
+                ],
+                [
+                  1546214400000,
+                  17.504
+                ],
+                [
+                  1548892800000,
+                  16.351
+                ],
+                [
+                  1551312000000,
+                  24.194
+                ],
+                [
+                  1553817600000,
+                  24.847
+                ],
+                [
+                  1556582400000,
+                  23.602
+                ],
+                [
+                  1557187200000,
+                  29.637
+                ]
+              ],
+              "name": "FB"
+            },
+            {
+              "data": [
+                [
+                  1388448000000,
+                  5.662
+                ],
+                [
+                  1391126400000,
+                  1.342
+                ],
+                [
+                  1393545600000,
+                  6.878
+                ],
+                [
+                  1396224000000,
+                  7.508
+                ],
+                [
+                  1398816000000,
+                  16.546
+                ],
+                [
+                  1401408000000,
+                  21.981
+                ],
+                [
+                  1404086400000,
+                  20.628
+                ],
+                [
+                  1406764800000,
+                  23.596
+                ],
+                [
+                  1409270400000,
+                  18.828
+                ],
+                [
+                  1412035200000,
+                  22.647
+                ],
+                [
+                  1414713600000,
+                  30.349
+                ],
+                [
+                  1417132800000,
+                  30.906
+                ],
+                [
+                  1419984000000,
+                  37.531
+                ],
+                [
+                  1422576000000,
+                  47.357
+                ],
+                [
+                  1424995200000,
+                  58.73
+                ],
+                [
+                  1427760000000,
+                  55.572
+                ],
+                [
+                  1430352000000,
+                  55.573
+                ],
+                [
+                  1432857600000,
+                  59.645
+                ],
+                [
+                  1435622400000,
+                  57.468
+                ],
+                [
+                  1438300800000,
+                  62.254
+                ],
+                [
+                  1440979200000,
+                  69.445
+                ],
+                [
+                  1443571200000,
+                  66.344
+                ],
+                [
+                  1446163200000,
+                  66.294
+                ],
+                [
+                  1448841600000,
+                  71.826
+                ],
+                [
+                  1451520000000,
+                  70.364
+                ],
+                [
+                  1454025600000,
+                  70.922
+                ],
+                [
+                  1456704000000,
+                  66.252
+                ],
+                [
+                  1459382400000,
+                  69.689
+                ],
+                [
+                  1461888000000,
+                  64.469
+                ],
+                [
+                  1464652800000,
+                  65.526
+                ],
+                [
+                  1467244800000,
+                  61.083
+                ],
+                [
+                  1469750400000,
+                  61.028
+                ],
+                [
+                  1472601600000,
+                  57.908
+                ],
+                [
+                  1475193600000,
+                  49.863
+                ],
+                [
+                  1477872000000,
+                  51.873
+                ],
+                [
+                  1480464000000,
+                  53.764
+                ],
+                [
+                  1483056000000,
+                  49.673
+                ],
+                [
+                  1485820800000,
+                  45.09
+                ],
+                [
+                  1488240000000,
+                  44.96
+                ],
+                [
+                  1490918400000,
+                  42.101
+                ],
+                [
+                  1493337600000,
+                  40.18
+                ],
+                [
+                  1496188800000,
+                  39.885
+                ],
+                [
+                  1498780800000,
+                  41.518
+                ],
+                [
+                  1501459200000,
+                  46.167
+                ],
+                [
+                  1504137600000,
+                  43.968
+                ],
+                [
+                  1506643200000,
+                  41.068
+                ],
+                [
+                  1509408000000,
+                  40.916
+                ],
+                [
+                  1512000000000,
+                  47.847
+                ],
+                [
+                  1514505600000,
+                  50.698
+                ],
+                [
+                  1517356800000,
+                  52.037
+                ],
+                [
+                  1519776000000,
+                  64.311
+                ],
+                [
+                  1522281600000,
+                  65.634
+                ],
+                [
+                  1525046400000,
+                  51.066
+                ],
+                [
+                  1527724800000,
+                  48.037
+                ],
+                [
+                  1530230400000,
+                  47.672
+                ],
+                [
+                  1532995200000,
+                  44.613
+                ],
+                [
+                  1535673600000,
+                  39.755
+                ],
+                [
+                  1538092800000,
+                  39.129
+                ],
+                [
+                  1540944000000,
+                  39.404
+                ],
+                [
+                  1543536000000,
+                  50.961
+                ],
+                [
+                  1546214400000,
+                  44.232
+                ],
+                [
+                  1548892800000,
+                  48.373
+                ],
+                [
+                  1551312000000,
+                  62.495
+                ],
+                [
+                  1553817600000,
+                  66.027
+                ],
+                [
+                  1556582400000,
+                  66.777
+                ],
+                [
+                  1557187200000,
+                  78.575
+                ]
+              ],
+              "name": "AMZN"
+            }
+          ],
+          "navigator": {
+            "enabled": false
+          },
+          "scrollbar": {
+            "enabled": false
+          }
+        },
+        "theme": {
+          "colors": [
+            "#f1c40f",
+            "#2ecc71",
+            "#9b59b6",
+            "#e74c3c",
+            "#34495e",
+            "#3498db",
+            "#1abc9c",
+            "#f39c12",
+            "#d35400"
+          ],
+          "chart": {
+            "backgroundColor": "#ECF0F1"
+          },
+          "xAxis": {
+            "gridLineDashStyle": "Dash",
+            "gridLineWidth": 1,
+            "gridLineColor": "#BDC3C7",
+            "lineColor": "#BDC3C7",
+            "minorGridLineColor": "#BDC3C7",
+            "tickColor": "#BDC3C7",
+            "tickWidth": 1
+          },
+          "yAxis": {
+            "gridLineDashStyle": "Dash",
+            "gridLineColor": "#BDC3C7",
+            "lineColor": "#BDC3C7",
+            "minorGridLineColor": "#BDC3C7",
+            "tickColor": "#BDC3C7",
+            "tickWidth": 1
+          },
+          "legendBackgroundColor": "rgba(0, 0, 0, 0.5)",
+          "background2": "#505053",
+          "dataLabelsColor": "#B0B0B3",
+          "textColor": "#34495e",
+          "contrastTextColor": "#F0F0F3",
+          "maskColor": "rgba(255,255,255,0.3)"
+        },
+        "conf_opts": {
+          "global": {
+            "Date": null,
+            "VMLRadialGradientURL": "http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png",
+            "canvasToolsURL": "http =//code.highcharts.com/list(version)/modules/canvas-tools.js",
+            "getTimezoneOffset": null,
+            "timezoneOffset": 0,
+            "useUTC": true
+          },
+          "lang": {
+            "contextButtonTitle": "Chart context menu",
+            "decimalPoint": ".",
+            "downloadJPEG": "Download JPEG image",
+            "downloadPDF": "Download PDF document",
+            "downloadPNG": "Download PNG image",
+            "downloadSVG": "Download SVG vector image",
+            "drillUpText": "Back to {series.name}",
+            "invalidDate": null,
+            "loading": "Loading...",
+            "months": [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December"
+            ],
+            "noData": "No data to display",
+            "numericSymbols": [
+              "k",
+              "M",
+              "G",
+              "T",
+              "P",
+              "E"
+            ],
+            "printChart": "Print chart",
+            "resetZoom": "Reset zoom",
+            "resetZoomTitle": "Reset zoom level 1:1",
+            "shortMonths": [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec"
+            ],
+            "thousandsSep": " ",
+            "weekdays": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ]
+          }
+        },
+        "type": "stock",
+        "fonts": [
+
+        ],
+        "debug": false
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    },
+    "out69bb9cd91faf828c": {
+      "x": {
+        "hc_opts": {
+          "title": {
+            "text": "Portfolio Volatility "
+          },
+          "yAxis": {
+            "title": {
+              "text": null
+            },
+            "labels": {
+              "format": "{value}%"
+            },
+            "opposite": false
+          },
+          "credits": {
+            "enabled": false
+          },
+          "exporting": {
+            "enabled": true
+          },
+          "plotOptions": {
+            "series": {
+              "label": {
+                "enabled": false
+              },
+              "turboThreshold": 0
+            },
+            "treemap": {
+              "layoutAlgorithm": "squarified"
+            }
+          },
+          "series": [
+            {
+              "data": [
+                [
+                  1388448000000,
+                  8.403
+                ],
+                [
+                  1391126400000,
+                  7.3755
+                ],
+                [
+                  1393545600000,
+                  7.262
+                ],
+                [
+                  1396224000000,
+                  7.3168
+                ],
+                [
+                  1398816000000,
+                  8.5919
+                ],
+                [
+                  1401408000000,
+                  9.2117
+                ],
+                [
+                  1404086400000,
+                  7.6938
+                ],
+                [
+                  1406764800000,
+                  7.7927
+                ],
+                [
+                  1409270400000,
+                  6.9751
+                ],
+                [
+                  1412035200000,
+                  7.5478
+                ],
+                [
+                  1414713600000,
+                  7.5777
+                ],
+                [
+                  1417132800000,
+                  7.382
+                ],
+                [
+                  1419984000000,
+                  7.5593
+                ],
+                [
+                  1422576000000,
+                  7.0128
+                ],
+                [
+                  1424995200000,
+                  6.0932
+                ],
+                [
+                  1427760000000,
+                  5.8008
+                ],
+                [
+                  1430352000000,
+                  5.9291
+                ],
+                [
+                  1432857600000,
+                  6.4029
+                ],
+                [
+                  1435622400000,
+                  6.2916
+                ],
+                [
+                  1438300800000,
+                  5.6811
+                ],
+                [
+                  1440979200000,
+                  6.14
+                ],
+                [
+                  1443571200000,
+                  6.3211
+                ],
+                [
+                  1446163200000,
+                  6.2822
+                ],
+                [
+                  1448841600000,
+                  5.4384
+                ],
+                [
+                  1451520000000,
+                  5.5081
+                ],
+                [
+                  1454025600000,
+                  5.5436
+                ],
+                [
+                  1456704000000,
+                  7.4141
+                ],
+                [
+                  1459382400000,
+                  7.1304
+                ],
+                [
+                  1461888000000,
+                  7.6346
+                ],
+                [
+                  1464652800000,
+                  7.7896
+                ],
+                [
+                  1467244800000,
+                  7.0049
+                ],
+                [
+                  1469750400000,
+                  6.7882
+                ],
+                [
+                  1472601600000,
+                  6.997
+                ],
+                [
+                  1475193600000,
+                  6.9176
+                ],
+                [
+                  1477872000000,
+                  6.7241
+                ],
+                [
+                  1480464000000,
+                  6.8677
+                ],
+                [
+                  1483056000000,
+                  5.678
+                ],
+                [
+                  1485820800000,
+                  5.3891
+                ],
+                [
+                  1488240000000,
+                  5.7219
+                ],
+                [
+                  1490918400000,
+                  5.4355
+                ],
+                [
+                  1493337600000,
+                  5.6538
+                ],
+                [
+                  1496188800000,
+                  5.5622
+                ],
+                [
+                  1498780800000,
+                  5.4564
+                ],
+                [
+                  1501459200000,
+                  5.2673
+                ],
+                [
+                  1504137600000,
+                  5.358
+                ],
+                [
+                  1506643200000,
+                  4.8986
+                ],
+                [
+                  1509408000000,
+                  4.2519
+                ],
+                [
+                  1512000000000,
+                  4.3743
+                ],
+                [
+                  1514505600000,
+                  3.4611
+                ],
+                [
+                  1517356800000,
+                  3.5908
+                ],
+                [
+                  1519776000000,
+                  5.3995
+                ],
+                [
+                  1522281600000,
+                  5.3828
+                ],
+                [
+                  1525046400000,
+                  7.0281
+                ],
+                [
+                  1527724800000,
+                  7.367
+                ],
+                [
+                  1530230400000,
+                  7.3362
+                ],
+                [
+                  1532995200000,
+                  7.5476
+                ],
+                [
+                  1535673600000,
+                  7.722
+                ],
+                [
+                  1538092800000,
+                  7.7068
+                ],
+                [
+                  1540944000000,
+                  8.1184
+                ],
+                [
+                  1543536000000,
+                  8.4613
+                ],
+                [
+                  1546214400000,
+                  6.8522
+                ],
+                [
+                  1548892800000,
+                  7.422
+                ],
+                [
+                  1551312000000,
+                  6.8429
+                ],
+                [
+                  1553817600000,
+                  6.4257
+                ],
+                [
+                  1556582400000,
+                  6.3509
+                ],
+                [
+                  1557187200000,
+                  5.7948
+                ]
+              ],
+              "name": "Rolling Port SD"
+            }
+          ],
+          "navigator": {
+            "enabled": false
+          },
+          "scrollbar": {
+            "enabled": false
+          }
+        },
+        "theme": {
+          "colors": [
+            "#f1c40f",
+            "#2ecc71",
+            "#9b59b6",
+            "#e74c3c",
+            "#34495e",
+            "#3498db",
+            "#1abc9c",
+            "#f39c12",
+            "#d35400"
+          ],
+          "chart": {
+            "backgroundColor": "#ECF0F1"
+          },
+          "xAxis": {
+            "gridLineDashStyle": "Dash",
+            "gridLineWidth": 1,
+            "gridLineColor": "#BDC3C7",
+            "lineColor": "#BDC3C7",
+            "minorGridLineColor": "#BDC3C7",
+            "tickColor": "#BDC3C7",
+            "tickWidth": 1
+          },
+          "yAxis": {
+            "gridLineDashStyle": "Dash",
+            "gridLineColor": "#BDC3C7",
+            "lineColor": "#BDC3C7",
+            "minorGridLineColor": "#BDC3C7",
+            "tickColor": "#BDC3C7",
+            "tickWidth": 1
+          },
+          "legendBackgroundColor": "rgba(0, 0, 0, 0.5)",
+          "background2": "#505053",
+          "dataLabelsColor": "#B0B0B3",
+          "textColor": "#34495e",
+          "contrastTextColor": "#F0F0F3",
+          "maskColor": "rgba(255,255,255,0.3)"
+        },
+        "conf_opts": {
+          "global": {
+            "Date": null,
+            "VMLRadialGradientURL": "http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png",
+            "canvasToolsURL": "http =//code.highcharts.com/list(version)/modules/canvas-tools.js",
+            "getTimezoneOffset": null,
+            "timezoneOffset": 0,
+            "useUTC": true
+          },
+          "lang": {
+            "contextButtonTitle": "Chart context menu",
+            "decimalPoint": ".",
+            "downloadJPEG": "Download JPEG image",
+            "downloadPDF": "Download PDF document",
+            "downloadPNG": "Download PNG image",
+            "downloadSVG": "Download SVG vector image",
+            "drillUpText": "Back to {series.name}",
+            "invalidDate": null,
+            "loading": "Loading...",
+            "months": [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December"
+            ],
+            "noData": "No data to display",
+            "numericSymbols": [
+              "k",
+              "M",
+              "G",
+              "T",
+              "P",
+              "E"
+            ],
+            "printChart": "Print chart",
+            "resetZoom": "Reset zoom",
+            "resetZoomTitle": "Reset zoom level 1:1",
+            "shortMonths": [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec"
+            ],
+            "thousandsSep": " ",
+            "weekdays": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ]
+          }
+        },
+        "type": "stock",
+        "fonts": [
+
+        ],
+        "debug": false
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

@@ -1,0 +1,12 @@
+name: flexdb-port-vol_2
+title: flexdb-port-vol 2
+username: nick
+account: nick
+server: colorado.rstudio.com
+hostUrl: https://colorado.rstudio.com/rsc/__api__
+appId: 2344
+bundleId: 25590
+url: https://colorado.rstudio.com:443/rsc/content/2344/
+when: 1555441591.54279
+asMultiple: FALSE
+asStatic: FALSE

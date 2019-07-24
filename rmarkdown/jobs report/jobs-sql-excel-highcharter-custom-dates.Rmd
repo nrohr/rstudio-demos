@@ -2,7 +2,7 @@
 title: "Jobs Report Scheduled and Excel and Highcharter"
 resource_files: config.yml
 rmd_output_metadata:
-  rsc_email_suppress_scheduled: yes
+  rsc_email_suppress_scheduled: FALSE
 output:
   html_document:
     df_print: paged
@@ -101,8 +101,7 @@ labor_sector_data_ggplot <-
                color = "cornflowerblue") +
   ylab("Monthly Change (thousands)") +
   labs(title = "Monthly Private Employment Change",
-       subtitle = "total empl, since 2009",
-       caption = "enjoy!") +
+       subtitle = "total empl, since 2009") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1),
         plot.title = element_text(hjust = 0.5),
@@ -547,12 +546,10 @@ last_month <- lubridate::month(last(labor_sector_data$date),
                                        label = TRUE, abbr = FALSE)
   
   msg <- compose_email(
-    body = "
+    body = glue("
     Hello Team,<br/>
     
-    Here are the latest jobs report data and charts,
-
-    updated with the BLS numbers for {last_month}.<br/>
+    Here are the latest jobs report data and charts, updated with the BLS numbers for {last_month}.
   
     <br/>Here is monthly change over time: 
 
@@ -572,7 +569,8 @@ last_month <- lubridate::month(last(labor_sector_data$date),
     
 
     Arrividerci,
-    JKR"
+
+    JKR")
   )
   rmarkdown::output_metadata$set(rsc_email_body_html = msg$html_str)
   rmarkdown::output_metadata$set(rsc_email_images = msg$images)
